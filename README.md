@@ -57,6 +57,7 @@ pytest + GitHub Actions Detection-as-Code validation
 - Maps detections to MITRE ATT&CK Cloud tactics and techniques.
 - Generates structured JSON alerts and a Markdown analyst report.
 - Provides a local Streamlit dashboard for reviewing alerts, risk, MITRE coverage, and threat-intelligence matches.
+- Includes a native SwiftUI macOS app for running detections, tests, and viewing results locally.
 - Includes pytest coverage and GitHub Actions CI validation.
 
 ## Folder Structure
@@ -98,6 +99,10 @@ pytest + GitHub Actions Detection-as-Code validation
 │   ├── dashboard.py
 │   └── pipeline.py
 ├── tests/
+├── macos/
+│   └── ThreatDrivenDaC/
+├── scripts/
+│   └── build_macos_app.sh
 ├── reports/
 │   ├── alerts.json
 │   └── sample_detection_report.md
@@ -131,6 +136,37 @@ The dashboard shows:
 - Alert detail expanders with MITRE mapping, IOC context, recommended actions, false-positive notes, and raw event snippets.
 - MITRE ATT&CK coverage and threat-intelligence match tables.
 - Analyst report preview with downloadable Markdown and JSON outputs.
+
+## Run the Native macOS App
+
+The project includes a local unsigned SwiftUI app that uses the repository `.venv` Python runtime. It does not bundle Python, so install dependencies first:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+```
+
+Build the unsigned app bundle:
+
+```bash
+scripts/build_macos_app.sh
+```
+
+Open it:
+
+```bash
+open dist/ThreatDrivenDaC.app
+```
+
+The app can:
+
+- run detections against suspicious, benign, or combined sample logs
+- show native dashboard cards, severity distribution, alert table, MITRE coverage, and threat-intelligence context
+- run `pytest` and display captured output
+- render the analyst Markdown report as readable text
+
+Because this is an unsigned local portfolio app, macOS may show a Gatekeeper warning if the app is moved or opened outside the development folder. For this demo workflow, build and open it from the repository root.
 
 ## Run the Pipeline
 
@@ -267,6 +303,7 @@ This makes rule changes testable and reviewable like application code.
 - Risk scoring and analyst-ready alert generation
 - Markdown report generation for SOC workflows
 - Streamlit dashboarding for local SOC-style demos
+- Native SwiftUI macOS app shell for portfolio demos
 - pytest test coverage
 - GitHub Actions CI/CD validation
 
@@ -281,3 +318,4 @@ This makes rule changes testable and reviewable like application code.
 - Add allowlists for approved automation roles, regions, and CIDR ranges.
 - Add HTML report output.
 - Add optional LLM-based analyst summaries while keeping offline rule-based summaries as the default.
+- Add code signing and notarization for a distributable macOS release.
