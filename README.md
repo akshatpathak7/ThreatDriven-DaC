@@ -309,10 +309,6 @@ This makes rule changes testable and reviewable like application code.
 - pytest test coverage
 - GitHub Actions CI/CD validation
 
-## Resume Bullet
-
-“Built a Python-based Threat-Driven Detection-as-Code Cloud Security Pipeline that analyzes AWS CloudTrail-style logs, detects risky IAM/S3/CloudTrail/security group events using YAML rules, enriches alerts with STIX-style threat intelligence, maps detections to MITRE ATT&CK Cloud techniques, and validates rules through GitHub Actions CI/CD tests.”
-
 ## Future Improvements
 
 - Add Sigma-like rule conversion or export.
