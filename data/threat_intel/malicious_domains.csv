@@ -1,0 +1,3 @@
+indicator,type,threat_type,confidence,severity,source,tags,first_seen,last_seen
+evil.example,domain,command_and_control,80,high,MockTI,dns|c2|sample,2026-04-22,2026-06-10
+

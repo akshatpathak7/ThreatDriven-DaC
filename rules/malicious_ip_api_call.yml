@@ -1,0 +1,23 @@
+id: AWS-009
+title: API Call From Known Malicious IP
+description: Detects AWS API activity from a source IP present in the offline threat-intelligence dataset.
+logsource:
+  product: aws
+  service: cloud
+detection:
+  selection:
+    sourceIPAddress:
+      ioc_match: ip
+  condition: selection
+severity: high
+risk_score: 74
+mitre_attack:
+  - tactic: Command and Control
+    technique_id: T1102
+    technique: Web Service
+  - tactic: Initial Access
+    technique_id: T1078.004
+    technique: Cloud Accounts
+false_positive: Threat-intelligence feeds can contain stale infrastructure or shared NAT addresses.
+recommended_action: Validate the IOC, review all activity from the IP, and rotate credentials used from the suspicious source.
+

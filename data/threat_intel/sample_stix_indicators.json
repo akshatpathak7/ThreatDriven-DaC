@@ -1,0 +1,38 @@
+{
+  "type": "bundle",
+  "id": "bundle--2a49d7b3-8516-4a03-96a8-9a8bf88f5d51",
+  "objects": [
+    {
+      "type": "indicator",
+      "id": "indicator--3f17a6f8-2ff1-43fc-9ef0-50f655f6d4a1",
+      "created_by_ref": "SampleSTIX",
+      "created": "2026-06-01T00:00:00Z",
+      "modified": "2026-06-01T00:00:00Z",
+      "name": "Sample malicious cloud automation IP",
+      "pattern": "[ipv4-addr:value = '203.0.113.66']",
+      "pattern_type": "stix",
+      "valid_from": "2026-06-01T00:00:00Z",
+      "valid_until": "2026-07-01T00:00:00Z",
+      "labels": ["malicious-activity", "cloud"],
+      "confidence": 88,
+      "severity": "high",
+      "threat_type": "cloud_intrusion"
+    },
+    {
+      "type": "indicator",
+      "id": "indicator--fd3b7752-fc27-46df-8015-e18c8a2d8b46",
+      "created_by_ref": "SampleSTIX",
+      "created": "2026-06-01T00:00:00Z",
+      "modified": "2026-06-01T00:00:00Z",
+      "name": "Sample C2 domain",
+      "pattern": "[domain-name:value = 'evil.example']",
+      "pattern_type": "stix",
+      "valid_from": "2026-06-01T00:00:00Z",
+      "valid_until": "2026-07-01T00:00:00Z",
+      "labels": ["command-and-control"],
+      "confidence": 70,
+      "severity": "medium",
+      "threat_type": "command_and_control"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+id: AWS-002
+title: Console Login Without MFA
+description: Detects successful AWS console authentication where MFA was not used.
+logsource:
+  product: aws
+  service: signin
+detection:
+  selection:
+    eventName: ConsoleLogin
+    responseElements.ConsoleLogin: Success
+    additionalEventData.MFAUsed: "No"
+  condition: selection
+severity: high
+risk_score: 70
+mitre_attack:
+  - tactic: Initial Access
+    technique_id: T1078.004
+    technique: Cloud Accounts
+  - tactic: Credential Access
+    technique_id: T1556
+    technique: Modify Authentication Process
+false_positive: Some service or lab accounts may not enforce MFA, but production human users should require MFA.
+recommended_action: Enforce MFA, validate the source IP and user agent, and review activity after the login.
+

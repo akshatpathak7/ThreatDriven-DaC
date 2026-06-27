@@ -1,0 +1,25 @@
+id: AWS-004
+title: AdministratorAccess Policy Attached to User
+description: Detects attachment of the AWS managed AdministratorAccess policy to an IAM user.
+logsource:
+  product: aws
+  service: iam
+detection:
+  selection:
+    eventSource: iam.amazonaws.com
+    eventName: AttachUserPolicy
+    requestParameters.policyArn:
+      contains: AdministratorAccess
+  condition: selection
+severity: critical
+risk_score: 88
+mitre_attack:
+  - tactic: Privilege Escalation
+    technique_id: T1098.003
+    technique: Additional Cloud Roles
+  - tactic: Persistence
+    technique_id: T1098
+    technique: Account Manipulation
+false_positive: Emergency access grants may attach AdministratorAccess temporarily, but should have explicit approval and expiry.
+recommended_action: Remove unauthorized administrator access, inspect the principal that made the change, and review subsequent API activity.
+

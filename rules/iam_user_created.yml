@@ -1,0 +1,20 @@
+id: AWS-003
+title: IAM User Created
+description: Detects creation of a new IAM user, which may indicate persistence setup.
+logsource:
+  product: aws
+  service: iam
+detection:
+  selection:
+    eventSource: iam.amazonaws.com
+    eventName: CreateUser
+  condition: selection
+severity: medium
+risk_score: 55
+mitre_attack:
+  - tactic: Persistence
+    technique_id: T1136.003
+    technique: Cloud Account
+false_positive: IAM users may be created during approved onboarding or automation workflows.
+recommended_action: Confirm the new user was authorized, review attached policies, and prefer federated access where possible.
+

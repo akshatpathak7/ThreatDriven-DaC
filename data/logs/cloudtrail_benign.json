@@ -1,0 +1,97 @@
+{
+  "Records": [
+    {
+      "eventTime": "2026-06-10T09:00:00Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "sourceIPAddress": "198.51.100.10",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "alice",
+        "arn": "arn:aws:iam::111122223333:user/alice"
+      },
+      "requestParameters": {},
+      "responseElements": {
+        "ConsoleLogin": "Success"
+      },
+      "additionalEventData": {
+        "MFAUsed": "Yes"
+      },
+      "awsRegion": "us-east-1",
+      "recipientAccountId": "111122223333",
+      "userAgent": "Mozilla/5.0 corporate-browser"
+    },
+    {
+      "eventTime": "2026-06-10T09:15:00Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "AttachUserPolicy",
+      "sourceIPAddress": "198.51.100.11",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "security-admin",
+        "arn": "arn:aws:iam::111122223333:user/security-admin"
+      },
+      "requestParameters": {
+        "userName": "bob",
+        "policyArn": "arn:aws:iam::aws:policy/ReadOnlyAccess"
+      },
+      "awsRegion": "us-east-1",
+      "recipientAccountId": "111122223333",
+      "userAgent": "aws-cli/2.15.0"
+    },
+    {
+      "eventTime": "2026-06-10T09:25:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "AuthorizeSecurityGroupIngress",
+      "sourceIPAddress": "198.51.100.12",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "arn": "arn:aws:sts::111122223333:assumed-role/NetworkAutomation/session-1",
+        "sessionContext": {
+          "sessionIssuer": {
+            "userName": "NetworkAutomation"
+          }
+        }
+      },
+      "requestParameters": {
+        "groupId": "sg-0123456789abcdef0",
+        "ipPermissions": {
+          "items": [
+            {
+              "fromPort": 443,
+              "toPort": 443,
+              "ipRanges": {
+                "items": [
+                  {
+                    "cidrIp": "10.0.0.0/16"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "awsRegion": "us-west-2",
+      "recipientAccountId": "111122223333",
+      "userAgent": "terraform/1.8.0"
+    },
+    {
+      "eventTime": "2026-06-10T09:40:00Z",
+      "eventSource": "sts.amazonaws.com",
+      "eventName": "AssumeRole",
+      "sourceIPAddress": "198.51.100.13",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "deploy-bot",
+        "arn": "arn:aws:iam::111122223333:user/deploy-bot"
+      },
+      "requestParameters": {
+        "roleArn": "arn:aws:iam::111122223333:role/ReadOnlyAudit"
+      },
+      "awsRegion": "eu-west-1",
+      "recipientAccountId": "111122223333",
+      "userAgent": "aws-sdk-python/1.34"
+    }
+  ]
+}
+

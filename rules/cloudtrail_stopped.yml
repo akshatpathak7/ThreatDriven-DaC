@@ -1,0 +1,23 @@
+id: AWS-007
+title: CloudTrail Logging Stopped or Deleted
+description: Detects attempts to stop or delete CloudTrail logging.
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection:
+    eventSource: cloudtrail.amazonaws.com
+    eventName:
+      in:
+        - StopLogging
+        - DeleteTrail
+  condition: selection
+severity: critical
+risk_score: 92
+mitre_attack:
+  - tactic: Defense Evasion
+    technique_id: T1562.008
+    technique: Disable or Modify Cloud Logs
+false_positive: Logging may be stopped during controlled account decommissioning or trail migration.
+recommended_action: Re-enable logging, preserve available logs, investigate the initiating principal, and check for follow-on activity.
+

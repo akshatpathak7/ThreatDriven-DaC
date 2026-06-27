@@ -1,0 +1,28 @@
+id: AWS-006
+title: S3 Bucket Policy Allows Public Access
+description: Detects S3 bucket policy changes that appear to grant access to everyone.
+logsource:
+  product: aws
+  service: s3
+detection:
+  selection:
+    eventSource: s3.amazonaws.com
+    eventName: PutBucketPolicy
+    requestParameters.bucketPolicy:
+      contains_any:
+        - '"Principal":"*"'
+        - '"Principal": "*"'
+        - 0.0.0.0/0
+  condition: selection
+severity: high
+risk_score: 78
+mitre_attack:
+  - tactic: Collection
+    technique_id: T1530
+    technique: Data from Cloud Storage
+  - tactic: Exfiltration
+    technique_id: T1537
+    technique: Transfer Data to Cloud Account
+false_positive: Static website buckets or public datasets may intentionally allow public reads.
+recommended_action: Validate business approval, enable S3 Block Public Access where appropriate, and review object exposure.
+

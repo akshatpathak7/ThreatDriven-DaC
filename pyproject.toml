@@ -1,0 +1,19 @@
+[project]
+name = "threat-driven-detection-as-code-cloud-security"
+version = "0.1.0"
+description = "Educational cloud security Detection-as-Code pipeline for AWS CloudTrail-style logs."
+requires-python = ">=3.11"
+dependencies = [
+  "PyYAML==6.0.2",
+  "pandas==2.2.3",
+  "streamlit==1.41.1"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.3.4"
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

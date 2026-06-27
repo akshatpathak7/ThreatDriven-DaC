@@ -1,0 +1,21 @@
+id: AWS-001
+title: Root Account Console Login
+description: Detects successful AWS Management Console login using the root account.
+logsource:
+  product: aws
+  service: signin
+detection:
+  selection:
+    eventName: ConsoleLogin
+    userIdentity.type: Root
+    responseElements.ConsoleLogin: Success
+  condition: selection
+severity: critical
+risk_score: 90
+mitre_attack:
+  - tactic: Initial Access
+    technique_id: T1078.004
+    technique: Cloud Accounts
+false_positive: Root login can occur during rare break-glass operations, but should be tightly controlled and ticketed.
+recommended_action: Verify the login owner, confirm MFA usage, rotate root credentials if unauthorized, and review account-level changes.
+

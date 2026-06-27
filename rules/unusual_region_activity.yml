@@ -1,0 +1,36 @@
+id: AWS-010
+title: Activity From Unusual AWS Region
+description: Detects sensitive AWS API activity outside the organization's expected operating regions.
+logsource:
+  product: aws
+  service: cloud
+detection:
+  selection:
+    eventName:
+      in:
+        - CreateUser
+        - AttachUserPolicy
+        - CreateAccessKey
+        - UpdateAccessKey
+        - PutBucketPolicy
+        - StopLogging
+        - DeleteTrail
+        - AuthorizeSecurityGroupIngress
+        - AssumeRole
+    awsRegion:
+      not_in:
+        - us-east-1
+        - us-west-2
+        - eu-west-1
+  condition: selection
+severity: medium
+risk_score: 58
+mitre_attack:
+  - tactic: Discovery
+    technique_id: T1526
+    technique: Cloud Service Dashboard
+  - tactic: Defense Evasion
+    technique_id: T1535
+    technique: Unused/Unsupported Cloud Regions
+false_positive: New workloads, disaster recovery tests, or regional expansion can produce legitimate activity in new regions.
+recommended_action: Confirm whether the region is approved, review the actor's recent activity, and consider regional restrictions.

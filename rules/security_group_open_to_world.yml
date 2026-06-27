@@ -1,0 +1,22 @@
+id: AWS-008
+title: Security Group Opened to the World
+description: Detects security group ingress rules that expose services to 0.0.0.0/0.
+logsource:
+  product: aws
+  service: ec2
+detection:
+  selection:
+    eventSource: ec2.amazonaws.com
+    eventName: AuthorizeSecurityGroupIngress
+    requestParameters.ipPermissions.items:
+      contains: 0.0.0.0/0
+  condition: selection
+severity: high
+risk_score: 76
+mitre_attack:
+  - tactic: Initial Access
+    technique_id: T1133
+    technique: External Remote Services
+false_positive: Public load balancers and intentionally exposed services may require internet ingress.
+recommended_action: Restrict ingress to approved CIDR ranges, verify exposed ports, and check whether the change was approved.
+

@@ -1,0 +1,489 @@
+[
+  {
+    "alert_id": "ALT-32E4C1E321E9",
+    "title": "Root Account Console Login",
+    "severity": "critical",
+    "risk_score": 100,
+    "timestamp": "2026-06-11T01:00:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "arn:aws:iam::111122223333:root",
+    "source_ip": "203.0.113.66",
+    "aws_region": "us-east-1",
+    "event_name": "ConsoleLogin",
+    "matched_rule_id": "AWS-001",
+    "matched_rule_title": "Root Account Console Login",
+    "threat_intel_context": [
+      {
+        "indicator": "203.0.113.66",
+        "type": "ip",
+        "threat_type": "credential_access_infrastructure",
+        "confidence": 92,
+        "severity": "critical",
+        "source": "MockTI",
+        "tags": [
+          "cloud",
+          "login",
+          "credential-access"
+        ],
+        "first_seen": "2026-05-01",
+        "last_seen": "2026-06-10"
+      }
+    ],
+    "mitre_attack": [
+      {
+        "tactic": "Initial Access",
+        "technique_id": "T1078.004",
+        "technique": "Cloud Accounts"
+      }
+    ],
+    "recommended_action": "Verify the login owner, confirm MFA usage, rotate root credentials if unauthorized, and review account-level changes.",
+    "false_positive_notes": "Root login can occur during rare break-glass operations, but should be tightly controlled and ticketed.",
+    "raw_event": {
+      "eventSource": "signin.amazonaws.com",
+      "userAgent": "Mozilla/5.0 suspicious-client",
+      "requestParameters": {}
+    }
+  },
+  {
+    "alert_id": "ALT-D519A3F9F75B",
+    "title": "Console Login Without MFA",
+    "severity": "critical",
+    "risk_score": 100,
+    "timestamp": "2026-06-11T01:00:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "arn:aws:iam::111122223333:root",
+    "source_ip": "203.0.113.66",
+    "aws_region": "us-east-1",
+    "event_name": "ConsoleLogin",
+    "matched_rule_id": "AWS-002",
+    "matched_rule_title": "Console Login Without MFA",
+    "threat_intel_context": [
+      {
+        "indicator": "203.0.113.66",
+        "type": "ip",
+        "threat_type": "credential_access_infrastructure",
+        "confidence": 92,
+        "severity": "critical",
+        "source": "MockTI",
+        "tags": [
+          "cloud",
+          "login",
+          "credential-access"
+        ],
+        "first_seen": "2026-05-01",
+        "last_seen": "2026-06-10"
+      }
+    ],
+    "mitre_attack": [
+      {
+        "tactic": "Initial Access",
+        "technique_id": "T1078.004",
+        "technique": "Cloud Accounts"
+      },
+      {
+        "tactic": "Credential Access",
+        "technique_id": "T1556",
+        "technique": "Modify Authentication Process"
+      }
+    ],
+    "recommended_action": "Enforce MFA, validate the source IP and user agent, and review activity after the login.",
+    "false_positive_notes": "Some service or lab accounts may not enforce MFA, but production human users should require MFA.",
+    "raw_event": {
+      "eventSource": "signin.amazonaws.com",
+      "userAgent": "Mozilla/5.0 suspicious-client",
+      "requestParameters": {}
+    }
+  },
+  {
+    "alert_id": "ALT-19D495808042",
+    "title": "API Call From Known Malicious IP",
+    "severity": "critical",
+    "risk_score": 100,
+    "timestamp": "2026-06-11T01:00:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "arn:aws:iam::111122223333:root",
+    "source_ip": "203.0.113.66",
+    "aws_region": "us-east-1",
+    "event_name": "ConsoleLogin",
+    "matched_rule_id": "AWS-009",
+    "matched_rule_title": "API Call From Known Malicious IP",
+    "threat_intel_context": [
+      {
+        "indicator": "203.0.113.66",
+        "type": "ip",
+        "threat_type": "credential_access_infrastructure",
+        "confidence": 92,
+        "severity": "critical",
+        "source": "MockTI",
+        "tags": [
+          "cloud",
+          "login",
+          "credential-access"
+        ],
+        "first_seen": "2026-05-01",
+        "last_seen": "2026-06-10"
+      }
+    ],
+    "mitre_attack": [
+      {
+        "tactic": "Command and Control",
+        "technique_id": "T1102",
+        "technique": "Web Service"
+      },
+      {
+        "tactic": "Initial Access",
+        "technique_id": "T1078.004",
+        "technique": "Cloud Accounts"
+      }
+    ],
+    "recommended_action": "Validate the IOC, review all activity from the IP, and rotate credentials used from the suspicious source.",
+    "false_positive_notes": "Threat-intelligence feeds can contain stale infrastructure or shared NAT addresses.",
+    "raw_event": {
+      "eventSource": "signin.amazonaws.com",
+      "userAgent": "Mozilla/5.0 suspicious-client",
+      "requestParameters": {}
+    }
+  },
+  {
+    "alert_id": "ALT-CC539EFD9C47",
+    "title": "Console Login Without MFA",
+    "severity": "critical",
+    "risk_score": 80,
+    "timestamp": "2026-06-11T01:05:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "finance-user",
+    "source_ip": "198.51.100.77",
+    "aws_region": "us-east-1",
+    "event_name": "ConsoleLogin",
+    "matched_rule_id": "AWS-002",
+    "matched_rule_title": "Console Login Without MFA",
+    "threat_intel_context": [],
+    "mitre_attack": [
+      {
+        "tactic": "Initial Access",
+        "technique_id": "T1078.004",
+        "technique": "Cloud Accounts"
+      },
+      {
+        "tactic": "Credential Access",
+        "technique_id": "T1556",
+        "technique": "Modify Authentication Process"
+      }
+    ],
+    "recommended_action": "Enforce MFA, validate the source IP and user agent, and review activity after the login.",
+    "false_positive_notes": "Some service or lab accounts may not enforce MFA, but production human users should require MFA.",
+    "raw_event": {
+      "eventSource": "signin.amazonaws.com",
+      "userAgent": "Mozilla/5.0",
+      "requestParameters": {}
+    }
+  },
+  {
+    "alert_id": "ALT-75CE2C65F2BF",
+    "title": "IAM User Created",
+    "severity": "high",
+    "risk_score": 73,
+    "timestamp": "2026-06-11T01:12:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "security-admin",
+    "source_ip": "198.51.100.78",
+    "aws_region": "us-east-1",
+    "event_name": "CreateUser",
+    "matched_rule_id": "AWS-003",
+    "matched_rule_title": "IAM User Created",
+    "threat_intel_context": [],
+    "mitre_attack": [
+      {
+        "tactic": "Persistence",
+        "technique_id": "T1136.003",
+        "technique": "Cloud Account"
+      }
+    ],
+    "recommended_action": "Confirm the new user was authorized, review attached policies, and prefer federated access where possible.",
+    "false_positive_notes": "IAM users may be created during approved onboarding or automation workflows.",
+    "raw_event": {
+      "eventSource": "iam.amazonaws.com",
+      "userAgent": "aws-cli/2.15.0",
+      "requestParameters": {
+        "userName": "backup-admin"
+      }
+    }
+  },
+  {
+    "alert_id": "ALT-68AB3F33812F",
+    "title": "AdministratorAccess Policy Attached to User",
+    "severity": "critical",
+    "risk_score": 100,
+    "timestamp": "2026-06-11T01:16:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "security-admin",
+    "source_ip": "198.51.100.78",
+    "aws_region": "us-east-1",
+    "event_name": "AttachUserPolicy",
+    "matched_rule_id": "AWS-004",
+    "matched_rule_title": "AdministratorAccess Policy Attached to User",
+    "threat_intel_context": [],
+    "mitre_attack": [
+      {
+        "tactic": "Privilege Escalation",
+        "technique_id": "T1098.003",
+        "technique": "Additional Cloud Roles"
+      },
+      {
+        "tactic": "Persistence",
+        "technique_id": "T1098",
+        "technique": "Account Manipulation"
+      }
+    ],
+    "recommended_action": "Remove unauthorized administrator access, inspect the principal that made the change, and review subsequent API activity.",
+    "false_positive_notes": "Emergency access grants may attach AdministratorAccess temporarily, but should have explicit approval and expiry.",
+    "raw_event": {
+      "eventSource": "iam.amazonaws.com",
+      "userAgent": "aws-cli/2.15.0",
+      "requestParameters": {
+        "userName": "backup-admin",
+        "policyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+      }
+    }
+  },
+  {
+    "alert_id": "ALT-CECB8425FF78",
+    "title": "New Access Key Created",
+    "severity": "critical",
+    "risk_score": 90,
+    "timestamp": "2026-06-11T01:20:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "security-admin",
+    "source_ip": "198.51.100.78",
+    "aws_region": "us-east-1",
+    "event_name": "CreateAccessKey",
+    "matched_rule_id": "AWS-005",
+    "matched_rule_title": "New Access Key Created",
+    "threat_intel_context": [],
+    "mitre_attack": [
+      {
+        "tactic": "Persistence",
+        "technique_id": "T1098",
+        "technique": "Account Manipulation"
+      },
+      {
+        "tactic": "Credential Access",
+        "technique_id": "T1552.005",
+        "technique": "Cloud Instance Metadata API"
+      }
+    ],
+    "recommended_action": "Confirm the key owner and purpose, rotate or disable suspicious keys, and prefer short-lived role credentials.",
+    "false_positive_notes": "Access keys may be created for legacy integrations, though long-lived keys should be minimized.",
+    "raw_event": {
+      "eventSource": "iam.amazonaws.com",
+      "userAgent": "aws-cli/2.15.0",
+      "requestParameters": {
+        "userName": "backup-admin"
+      }
+    }
+  },
+  {
+    "alert_id": "ALT-2C700C0F1B65",
+    "title": "S3 Bucket Policy Allows Public Access",
+    "severity": "critical",
+    "risk_score": 88,
+    "timestamp": "2026-06-11T01:30:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "storage-operator",
+    "source_ip": "198.51.100.80",
+    "aws_region": "us-east-1",
+    "event_name": "PutBucketPolicy",
+    "matched_rule_id": "AWS-006",
+    "matched_rule_title": "S3 Bucket Policy Allows Public Access",
+    "threat_intel_context": [],
+    "mitre_attack": [
+      {
+        "tactic": "Collection",
+        "technique_id": "T1530",
+        "technique": "Data from Cloud Storage"
+      },
+      {
+        "tactic": "Exfiltration",
+        "technique_id": "T1537",
+        "technique": "Transfer Data to Cloud Account"
+      }
+    ],
+    "recommended_action": "Validate business approval, enable S3 Block Public Access where appropriate, and review object exposure.",
+    "false_positive_notes": "Static website buckets or public datasets may intentionally allow public reads.",
+    "raw_event": {
+      "eventSource": "s3.amazonaws.com",
+      "userAgent": "aws-sdk-go/1.44",
+      "requestParameters": {
+        "bucketName": "customer-exports-prod",
+        "bucketPolicy": "{\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":\"*\",\"Action\":\"s3:GetObject\",\"Resource\":\"arn:aws:s3:::customer-exports-prod/*\"}]}"
+      }
+    }
+  },
+  {
+    "alert_id": "ALT-16571F4E7813",
+    "title": "CloudTrail Logging Stopped or Deleted",
+    "severity": "critical",
+    "risk_score": 100,
+    "timestamp": "2026-06-11T01:40:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "ops-admin",
+    "source_ip": "198.51.100.81",
+    "aws_region": "us-east-1",
+    "event_name": "StopLogging",
+    "matched_rule_id": "AWS-007",
+    "matched_rule_title": "CloudTrail Logging Stopped or Deleted",
+    "threat_intel_context": [],
+    "mitre_attack": [
+      {
+        "tactic": "Defense Evasion",
+        "technique_id": "T1562.008",
+        "technique": "Disable or Modify Cloud Logs"
+      }
+    ],
+    "recommended_action": "Re-enable logging, preserve available logs, investigate the initiating principal, and check for follow-on activity.",
+    "false_positive_notes": "Logging may be stopped during controlled account decommissioning or trail migration.",
+    "raw_event": {
+      "eventSource": "cloudtrail.amazonaws.com",
+      "userAgent": "aws-cli/2.15.0",
+      "requestParameters": {
+        "name": "org-management-trail"
+      }
+    }
+  },
+  {
+    "alert_id": "ALT-496EEEAA90EA",
+    "title": "Security Group Opened to the World",
+    "severity": "critical",
+    "risk_score": 94,
+    "timestamp": "2026-06-11T01:45:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "network-admin",
+    "source_ip": "198.51.100.82",
+    "aws_region": "us-west-2",
+    "event_name": "AuthorizeSecurityGroupIngress",
+    "matched_rule_id": "AWS-008",
+    "matched_rule_title": "Security Group Opened to the World",
+    "threat_intel_context": [],
+    "mitre_attack": [
+      {
+        "tactic": "Initial Access",
+        "technique_id": "T1133",
+        "technique": "External Remote Services"
+      }
+    ],
+    "recommended_action": "Restrict ingress to approved CIDR ranges, verify exposed ports, and check whether the change was approved.",
+    "false_positive_notes": "Public load balancers and intentionally exposed services may require internet ingress.",
+    "raw_event": {
+      "eventSource": "ec2.amazonaws.com",
+      "userAgent": "console.amazonaws.com",
+      "requestParameters": {
+        "groupId": "sg-0badcafe123456789",
+        "ipPermissions": {
+          "items": [
+            {
+              "fromPort": 22,
+              "toPort": 22,
+              "ipProtocol": "tcp",
+              "ipRanges": {
+                "items": [
+                  {
+                    "cidrIp": "0.0.0.0/0"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "alert_id": "ALT-B07824E04A00",
+    "title": "API Call From Known Malicious IP",
+    "severity": "critical",
+    "risk_score": 97,
+    "timestamp": "2026-06-11T01:50:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "contractor",
+    "source_ip": "192.0.2.44",
+    "aws_region": "us-east-1",
+    "event_name": "AssumeRole",
+    "matched_rule_id": "AWS-009",
+    "matched_rule_title": "API Call From Known Malicious IP",
+    "threat_intel_context": [
+      {
+        "indicator": "192.0.2.44",
+        "type": "ip",
+        "threat_type": "suspicious_cloud_api_activity",
+        "confidence": 84,
+        "severity": "high",
+        "source": "MockTI",
+        "tags": [
+          "cloud",
+          "api",
+          "reconnaissance"
+        ],
+        "first_seen": "2026-05-14",
+        "last_seen": "2026-06-11"
+      }
+    ],
+    "mitre_attack": [
+      {
+        "tactic": "Command and Control",
+        "technique_id": "T1102",
+        "technique": "Web Service"
+      },
+      {
+        "tactic": "Initial Access",
+        "technique_id": "T1078.004",
+        "technique": "Cloud Accounts"
+      }
+    ],
+    "recommended_action": "Validate the IOC, review all activity from the IP, and rotate credentials used from the suspicious source.",
+    "false_positive_notes": "Threat-intelligence feeds can contain stale infrastructure or shared NAT addresses.",
+    "raw_event": {
+      "eventSource": "sts.amazonaws.com",
+      "userAgent": "aws-sdk-python/1.34",
+      "requestParameters": {
+        "roleArn": "arn:aws:iam::111122223333:role/SupportRole"
+      }
+    }
+  },
+  {
+    "alert_id": "ALT-65241475EB0B",
+    "title": "Activity From Unusual AWS Region",
+    "severity": "high",
+    "risk_score": 76,
+    "timestamp": "2026-06-11T02:05:00Z",
+    "affected_account": "111122223333",
+    "affected_user": "backup-admin",
+    "source_ip": "198.51.100.90",
+    "aws_region": "ap-southeast-3",
+    "event_name": "UpdateAccessKey",
+    "matched_rule_id": "AWS-010",
+    "matched_rule_title": "Activity From Unusual AWS Region",
+    "threat_intel_context": [],
+    "mitre_attack": [
+      {
+        "tactic": "Discovery",
+        "technique_id": "T1526",
+        "technique": "Cloud Service Dashboard"
+      },
+      {
+        "tactic": "Defense Evasion",
+        "technique_id": "T1535",
+        "technique": "Unused/Unsupported Cloud Regions"
+      }
+    ],
+    "recommended_action": "Confirm whether the region is approved, review the actor's recent activity, and consider regional restrictions.",
+    "false_positive_notes": "New workloads, disaster recovery tests, or regional expansion can produce legitimate activity in new regions.",
+    "raw_event": {
+      "eventSource": "iam.amazonaws.com",
+      "userAgent": "aws-cli/2.15.0",
+      "requestParameters": {
+        "userName": "backup-admin",
+        "status": "Active"
+      }
+    }
+  }
+]

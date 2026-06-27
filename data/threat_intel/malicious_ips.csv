@@ -1,0 +1,4 @@
+indicator,type,threat_type,confidence,severity,source,tags,first_seen,last_seen
+203.0.113.66,ip,credential_access_infrastructure,92,critical,MockTI,cloud|login|credential-access,2026-05-01,2026-06-10
+192.0.2.44,ip,suspicious_cloud_api_activity,84,high,MockTI,cloud|api|reconnaissance,2026-05-14,2026-06-11
+
