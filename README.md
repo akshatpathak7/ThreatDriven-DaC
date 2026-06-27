@@ -7,7 +7,6 @@ This project is designed to feel like a lightweight SOC and cloud detection engi
 ## Why This Project Matters
 
 Modern cloud security teams need repeatable detection engineering practices: version-controlled rules, realistic test data, structured alerts, threat-intelligence context, and automated validation before rules are merged. This project demonstrates those skills without relying on paid APIs or unsafe offensive code.
-
 All logs and indicators are synthetic samples. The project is defensive only and does not contain exploitation, credential theft, malware, persistence code, or harmful automation.
 
 ## Architecture
