@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-The pipeline generated 12 alert(s), including 10 critical and 2 high severity finding(s). The highest-risk activity was 'Root Account Console Login' affecting arn:aws:iam::111122223333:root from 203.0.113.66. 4 alert(s) matched offline threat-intelligence indicators. Security teams should validate the affected identities (arn:aws:iam::111122223333:root, backup-admin, contractor, finance-user, network-admin), review CloudTrail and IAM changes, rotate exposed credentials where needed, and confirm whether the activity was authorized.
+The pipeline generated 12 alert(s), including 10 critical and 2 high severity finding(s). The highest-risk activity was 'Root Account Console Login' affecting arn:aws:iam::111122223333:root from 203.0.113.66. 4 alert(s) matched offline threat-intelligence indicators. Security teams should validate the affected identities (arn:aws:iam::111122223333:root, backup-admin, contractor, finance-user, network-admin), review CloudTrail and IAM changes, rotate exposed credentials where needed, and confirm if the activity was authorized.
 
 ## Alert Overview
 
