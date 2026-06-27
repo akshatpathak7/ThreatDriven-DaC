@@ -4,6 +4,8 @@ A defensive, educational cloud security project that analyzes synthetic AWS Clou
 
 This project is designed to feel like a lightweight SOC and cloud detection engineering workflow that is easy to explain in interviews.
 
+Project note: this repository is maintained as a practical detection-engineering portfolio demo.
+
 ## Why This Project Matters
 
 Modern cloud security teams need repeatable detection engineering practices: version-controlled rules, realistic test data, structured alerts, threat-intelligence context, and automated validation before rules are merged. This project demonstrates those skills without relying on paid APIs or unsafe offensive code.
